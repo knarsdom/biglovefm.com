@@ -1,0 +1,20 @@
+<body style="margin:0;">
+<script type="text/javascript" src="../ext_iframe/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<div id="radio_info_container"></div>
+<script>
+ $(document).ready(function() {
+	 var radio_url = "play_info.php?ip=radio1.serverradio.net&port=8068&width=250&height=&show_station=yes&show_listener=no&show_song_name=yes&show_bitrate=yes";
+	$.get( radio_url, function( data ) {
+	  $( "#radio_info_container" ).html( data );
+	});
+   var refreshId = setInterval(function() {
+		$.get( radio_url, function( data ) {
+		  $( "#radio_info_container" ).html( data );
+		});
+   }, 20000);
+   $.ajaxSetup({ cache: false });
+});
+</script>
+<audio style="width:250;" controls="controls" autoplay="true" src="http://radio1.serverradio.net:8068/">
+	Your browser does not support the audio element.</audio>
+</body>
